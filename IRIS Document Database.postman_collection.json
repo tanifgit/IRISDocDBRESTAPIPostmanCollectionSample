@@ -1,0 +1,1080 @@
+{
+	"info": {
+		"_postman_id": "90e1420e-8cf2-4e1d-a0b3-0aabcd3373ac",
+		"name": "IRIS Document Database",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Metadata",
+			"item": [
+				{
+					"name": "Create Database - Colors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Created Colors class\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Class).to.eql(\"ISC.DM.Colors\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/db/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"db",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Property - Color [Unique]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"pm.test(\"Created color property\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Name).to.eql(\"color\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/color?type=%String&path=color&unique=1",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"color"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "%String"
+								},
+								{
+									"key": "path",
+									"value": "color"
+								},
+								{
+									"key": "unique",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Property - Hex Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"pm.test(\"Created hexCode property\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Name).to.eql(\"hexCode\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/hexCode?type=%String&path=code.hex",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"hexCode"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "%String"
+								},
+								{
+									"key": "path",
+									"value": "code.hex"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Metadata",
+			"item": [
+				{
+					"name": "Get All Database in NS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Database - Colors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Got Colors class\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Class).to.eql(\"ISC.DM.Colors\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/db/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"db",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Property - Color",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Got color property\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Name).to.eql(\"color\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/color?type=%String&path=$.color",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"color"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "%String"
+								},
+								{
+									"key": "path",
+									"value": "$.color"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Property - Hex Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Got hexCode property\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.Name).to.eql(\"hexCode\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/hexCode?type=%String&path=$.code.hex",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"hexCode"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "%String"
+								},
+								{
+									"key": "path",
+									"value": "$.code.hex"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Insert / Update / Delete Docs",
+			"item": [
+				{
+					"name": "Insert Doc - Single [Red]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"pm.test(\"Inserted Red Color with ID 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content._documentID).to.eql(\"1\");\r",
+									"    pm.expect(jsonData.content.content.color).to.eql(\"red\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"red\",\r\n    \"category\": \"hue\",\r\n    \"type\": \"primary\",\r\n    \"code\": {\r\n        \"rgba\": [255,0,0,1],\r\n        \"hex\": \"#FF0\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Doc - Single [Black]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"pm.test(\"Inserted Black Color with ID 2\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content._documentID).to.eql(\"2\");\r",
+									"    pm.expect(jsonData.content.content.color).to.eql(\"black\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"black\",\r\n    \"category\": \"hue\",\r\n    \"type\": \"primary\",\r\n    \"code\": {\r\n       \"rgba\": [255,255,255,1],\r\n       \"hex\": \"#000\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Doc - Single [White]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"pm.test(\"Inserted White Color with ID 3\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content._documentID).to.eql(\"3\");\r",
+									"    pm.expect(jsonData.content.content.color).to.eql(\"white\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"white\",\r\n    \"category\": \"value\",\r\n    \"code\": {\r\n        \"rgba\": [0,0,0,1],\r\n        \"hex\": \"#FFF\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Existing Doc - By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Updated Red Color with ID 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content._documentID).to.eql(\"1\");\r",
+									"    pm.expect(jsonData.content.content.color).to.eql(\"red\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"color\": \"red\",\r\n      \"category\": \"hue\",\r\n      \"type\": \"primary\",\r\n      \"code\": {\r\n        \"rgba\": [255,0,0,1],\r\n        \"hex\": \"#FF0\"\r\n      }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/1",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Doc - By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Deleted Red Color with ID 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.color).to.eql(\"red\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/1",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Find & Get Docs",
+			"item": [
+				{
+					"name": "Get Doc - By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Could not delete Color with ID 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status.errors[0].id).to.eql(\"LoadObjectNotFound\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/1",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Doc - By Unique Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got Color by unique property color = black\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.color).to.eql(\"black\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/doc/Colors/color/black",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"doc",
+								"Colors",
+								"color",
+								"black"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Docs in DB - Colors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got all colors - count of 2\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.content.length).to.eql(2);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/find/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"find",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Docs in DB - Colors with Proj",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got all colors with desired projection\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.content[0].color).to.eql(\"black\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projection\":[\"%DocumentId\",\"color\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/find/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"find",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Docs in DB - Colors per restriction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got colors per restriction - count of 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.content.length).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"restriction\":[\"color\",\"b\",\"%STARTSWITH\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/find/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"find",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Docs in DB - Colors per restriction with Proj",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got colors per restriction with desired projection\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.content[0].color).to.eql(\"black\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"restriction\":[\"color\",\"b\",\"%STARTSWITH\"],\"projection\":[\"%DocumentId\",\"color\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/find/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"find",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Metadata",
+			"item": [
+				{
+					"name": "Delete Property - Hex Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got only 6 properties\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.properties.length).to.eql(6);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/hexCode",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"hexCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Property - Color",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Got only 5 properties\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.properties.length).to.eql(5);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/prop/Colors/color",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"prop",
+								"Colors",
+								"color"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Database - Colors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Deleted the database\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.content.database).to.eql(\"Colors\");\r",
+									"    pm.expect(jsonData.content.dropped).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}/db/Colors",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}",
+								"db",
+								"Colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ALL Databases in NS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{Server}}:{{Port}}/api/docdb/v1/{{Namespace}}",
+							"protocol": "http",
+							"host": [
+								"{{Server}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"docdb",
+								"v1",
+								"{{Namespace}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "sys",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "SuperUser",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "Port",
+			"value": "52773"
+		},
+		{
+			"key": "Server",
+			"value": "localhost"
+		},
+		{
+			"key": "Namespace",
+			"value": "USER"
+		}
+	]
+}
