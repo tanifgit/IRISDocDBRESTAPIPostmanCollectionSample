@@ -2,6 +2,7 @@
 A Postman Collection of REST API calls to demonstrate InterSystems IRIS DocDB basic calls
 
 See InterSystems Developer Community Post for more details:
+https://community.intersystems.com/post/document-database-docdb-sample-rest-api-calls-postman-collection
 
 For the benefit of those who want to use the Document Database (DocDB) capabilities within InterSystems IRIS, and specifically the REST API it provides, I put together a Postman Collection that provides samples for several basic calls.
 
